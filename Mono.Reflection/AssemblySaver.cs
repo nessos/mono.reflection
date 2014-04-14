@@ -521,7 +521,10 @@ namespace Mono.Reflection {
 			else
 				declaringType.NestedTypes.Add (type_definition);
 
-			type_definition.BaseType = CreateReference (type.BaseType, type_definition);
+            if (type.BaseType == null)
+                type_definition.BaseType = null;
+            else
+                type_definition.BaseType = CreateReference(type.BaseType, type_definition);
 
 			var layout = type.StructLayoutAttribute;
 
